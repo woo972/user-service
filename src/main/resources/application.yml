@@ -1,6 +1,6 @@
 # random port
 server:
-  port: 9721
+  port: 0
 
 spring:
   application:
@@ -13,4 +13,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://127.0.0.1:9720/eureka
+      defaultZone: http://localhost:8761/eureka
