@@ -1,9 +1,6 @@
 package com.wowls.userservice.Entity;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
