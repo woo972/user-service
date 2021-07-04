@@ -8,12 +8,12 @@ import javax.validation.constraints.Size;
 
 @Data
 public class RequestLogin {
-    @NotNull(message = "cant be null")
+    @NotNull(message = "email can't be null")
     @Size(min =2, message = "more than 2 plz")
     @Email
     private String email;
 
-    @NotNull(message = "cant be null")
+    @NotNull(message = "password can't be null")
     @Size(min =2, message = "more than 2 plz")
     private String password;
     

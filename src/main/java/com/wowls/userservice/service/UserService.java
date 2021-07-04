@@ -6,17 +6,22 @@ import com.wowls.userservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -44,5 +49,18 @@ public class UserService {
         return userRepository.findByUserId(userId)
                 .map(userEntity -> new ModelMapper().map(userEntity, UserDto.class))
                 .orElseThrow(() -> new IllegalArgumentException("there is no user for that id:"+userId));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserEntity userEntity = userRepository.findByEmail(email);
+        if(userEntity == null) throw new UsernameNotFoundException(email);
+        return new User(userEntity.getEmail(),
+                userEntity.getEncryptedPassword(),
+                true,
+                true,
+                true,
+                true,
+                new ArrayList<>());
     }
 }

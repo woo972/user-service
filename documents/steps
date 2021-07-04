@@ -1,0 +1,18 @@
+authentication
+
+add authentication filter
+add filter to web security with authenticationmanager
+
+authorization
+
+add new configure method
+
+
+- Authentication (인증)
+
+Authentication은 주체(principal)의 신원을 증명하는 과정입니다. 예를 들자면 사용자가 애플리케이션을 이용하기 위해 로그인을 진행하는 것과 같습니다.
+
+
+- Authorization (인가)
+
+ Authorization은 인증을 마친 사용자에게 권한을 부여하여 특정 리소스에 접근할 수 있도록 허가하는 과정입니다. 인가는 인증 과정 이후에 수행되어야 하며 권한은 Role의 형태로 부여하는게 일반적입니다.

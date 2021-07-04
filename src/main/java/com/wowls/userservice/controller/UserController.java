@@ -19,7 +19,7 @@ import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/user-service")
+@RequestMapping("/")
 public class UserController {
 
     private final Greeting greeting;
