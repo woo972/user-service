@@ -32,7 +32,8 @@ public class UserController {
                 + ", port(local.server.port)=" + env.getProperty("local.server.port")
                 + ", port(server.port)=" + env.getProperty("server.port")
                 + ", token_secret=" + env.getProperty("token.secret")
-                + ", token_expiration_time=" + env.getProperty("token.expiration_time"));
+                + ", token_expiration_time=" + env.getProperty("token.expiration_time")
+                + ", datsource pw="+ env.getProperty("spring.datasource.password"));
     }
 
     @GetMapping("/welcome")
