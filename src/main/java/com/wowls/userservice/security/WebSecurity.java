@@ -43,7 +43,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception { // 인증
         // select pwd                           // encrypt pwd
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncorder).
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncorder);
     }
 }
 
