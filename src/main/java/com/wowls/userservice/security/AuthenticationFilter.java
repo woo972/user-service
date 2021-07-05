@@ -1,8 +1,13 @@
 package com.wowls.userservice.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wowls.userservice.dto.UserDto;
+import com.wowls.userservice.service.UserService;
 import com.wowls.userservice.vo.RequestLogin;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.config.environment.Environment;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -18,7 +23,13 @@ import java.util.ArrayList;
 
 
 @Slf4j
+@RequiredArgsConstructor
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+    private final AuthenticationManager authenticationManager;
+    private final UserService userService;
+    private final Environment environment;
+
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
@@ -38,6 +49,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-        log.debug(((User)authResult.getPrincipal()).getUsername());
+        String userName = ((User)authResult.getPrincipal()).getUsername();
+        UserDto userDetails = userService.getUserDetailsByEmail(userName);
     }
 }

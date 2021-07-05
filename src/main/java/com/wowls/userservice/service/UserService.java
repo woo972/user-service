@@ -63,4 +63,10 @@ public class UserService implements UserDetailsService {
                 true,
                 new ArrayList<>());
     }
+
+    public UserDto getUserDetailsByEmail(String email) {
+        UserEntity userEntity = userRepository.findByEmail(email);
+        UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+        return userDto;
+    }
 }
