@@ -61,7 +61,7 @@ public class UserService implements UserDetailsService {
                 true,
                 true,
                 true,
-                new ArrayList<>());
+                new ArrayList<>()); // 권한
     }
 
     public UserDto getUserDetailsByEmail(String email) {

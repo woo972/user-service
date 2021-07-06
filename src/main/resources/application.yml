@@ -18,11 +18,15 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: env, refresh, beans, health
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: env, refresh, beans, health
 
 greeting:
   message: hello
+
+logging:
+  level:
+    com.wowls.userservice: DEBUG
