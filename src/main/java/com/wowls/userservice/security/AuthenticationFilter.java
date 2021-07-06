@@ -53,8 +53,6 @@ A BadCredentialsException must be thrown if incorrect credentials are presented.
 
         try {
             RequestLogin creds = new ObjectMapper().readValue(request.getInputStream(), RequestLogin.class);
-            AuthenticationManager a = getAuthenticationManager();
-            a.authenticate(null);
             return getAuthenticationManager().authenticate(
                     new UsernamePasswordAuthenticationToken(
                             creds.getEmail(),
@@ -79,7 +77,7 @@ A BadCredentialsException must be thrown if incorrect credentials are presented.
         String token = Jwts.builder()
                 .setSubject(userDetails.getUserId())
                 .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(environment.getProperty("token.expiration_time"))))
-                .signWith(SignatureAlgorithm.HS256, environment.getProperty("token.secret"))
+                .signWith(SignatureAlgorithm.HS512, environment.getProperty("token.secret"))
                 .compact();
 
         response.setHeader("token", token);
