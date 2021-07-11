@@ -22,7 +22,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: env, refresh, beans, health
+        include: env, refresh, beans, health, busrefresh, info, metrics, prometheus
 
 greeting:
   message: hello
